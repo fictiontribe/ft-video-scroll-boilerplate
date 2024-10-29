@@ -1,0 +1,62 @@
+@import "_vars"; // Import global variables
+
+// Keyframes for the 'text-aura' animation
+@keyframes text-aura {
+    0% {
+        // Initial state of the text shadow
+        text-shadow:
+            0 -15px 15px rgba($color-1, 0.8), // Top-left purple shadow
+            0 -4px 15px rgba($color-2, 0.8), // Light blue shadow
+            5px -5px 15px rgba($color-3, 0.8), // Teal shadow
+            -3px -3px 15px rgba($color-4, 0.8); // Black shadow
+    }
+
+    33.333% {
+        // Transition to next state
+        text-shadow:
+            0 4px 12px rgba($color-3, 0.8), // Teal shadow
+            5px -10px 25px rgba($color-2, 1), // Intense light blue shadow
+            -4px 0 35px rgba($color-1, 0.8), // Purple shadow
+            3px 3px 15px rgba($color-4, 0.5); // Faint black shadow
+    }
+
+    66.666% {
+        // Transition to next state
+        text-shadow:
+            0 0 50px rgba($color-1, 1), // Bright purple glow
+            5px -12px 8px rgba($color-3, 0.8), // Teal shadow
+            15px -5px 15px rgba($color-2, 0.6), // Light blue shadow
+            0 -10px 23px rgba($color-4, 0.8); // Black shadow
+    }
+
+    100% {
+        // Final state matches the initial state to loop the animation
+        text-shadow:
+            0 -15px 15px rgba($color-1, 0.8),
+            0 -4px 15px rgba($color-2, 0.8),
+            -3px -3px 15px rgba($color-4, 0.8),
+            5px -5px 15px rgba($color-3, 0.8);
+    }
+}
+
+// Aura Text Animation Class
+.aura-text {
+    // Apply the text-aura animation with infinite looping
+    animation: text-aura var(--aura-speed) ease-out infinite;
+
+    // Modifier for disabling animation on mobile, then re-enabling with media query
+    &.aura-text-mobile-on {
+        animation: none; // Disable animation by default
+
+        @media screen and (max-width: 992px) {
+            // Re-enable animation on smaller screens
+            animation: text-aura var(--aura-speed) ease-out infinite;
+        }
+    }
+}
+
+// Clipping Class
+.clipping {
+    clip-path: inset(0 -100% 0 0); // Create an inset clipping effect
+    white-space: nowrap; // Prevent text wrapping for clipped elements
+}

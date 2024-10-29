@@ -1,0 +1,42 @@
+// Color Variables
+$color-1: #a261b6; // Soft purple
+$color-2: rgba(114, 168, 255, 1); // Light blue (with opacity)
+$color-3: #72ccc5; // Teal
+$color-4: black; // Standard black
+
+// Background and utility colors
+$background-color: #222; // Dark background
+$black: #464646; // Grayish black for text or background
+$blue: #064264; // Dark blue for primary actions
+$purple: #C17CEB; // Vibrant purple for accents
+
+// CSS Custom Properties (Root Variables)
+:root {
+    // Gradient colors
+    --gradient-start: rgba(2, 0, 36, 1); // Deep blue for gradient start
+    --gradient-mid: rgba(162, 97, 182, 1); // Mid-tone purple for gradient
+    --gradient-end: rgba(114, 168, 255, 1); // Light blue for gradient end
+
+    // SASS Color Variables in Custom Properties
+    --color-1: #{$color-1}; // Soft purple from SASS variable
+    --color-2: #{$color-2}; // Light blue from SASS variable
+    --color-3: #{$color-3}; // Teal from SASS variable
+    --color-4: #{$color-4}; // Black from SASS variable
+
+    // Aura Animation Properties
+    --aura-size: 200%; // Size of aura effect
+    --aura-speed: 15s; // Speed of aura animation
+
+    // Aura Colors
+    --aura-1: var(--color-1); // Purple aura
+    --aura-2: var(--color-2); // Blue aura
+    --aura-3: var(--color-3); // Teal aura
+    --aura-4: var(--color-4); // Black aura
+
+    --repaint-trigger: initial; // Control over repaint triggering for animations
+}
+
+// Utility Classes
+.purple {
+    color: $purple; // Apply vibrant purple text color
+}

@@ -1,0 +1,25 @@
+// General anchor and button styles
+a,
+button {
+    touch-action: manipulation; // Improve touch experience by disabling unnecessary gestures
+}
+
+// Big Button Styles
+.big-btn {
+    border-radius: 30px; // Rounded corners for a modern look
+    background: var(--Linear, linear-gradient(90deg, #72A8FF 0%, #A261B6 100%)); // Gradient background
+    color: #000; // Black text color
+
+    font-family: 'Syne'; // Use Syne font
+    font-size: 24px; // Large font size
+    font-style: normal;
+    font-weight: 600; // Semi-bold for emphasis
+    padding: 16px 38px; // Spacing inside the button
+    text-decoration: none; // Remove underline for links
+}
+
+// Navigation button styles
+.nav-prev,
+.nav-next {
+    pointer-events: auto !important; // Ensure pointer events are enabled
+}

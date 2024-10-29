@@ -1,0 +1,96 @@
+// Loading Overlay Styles
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: #fff;
+    font-size: 2rem;
+    z-index: 10;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 0;
+    pointer-events: all; // Enable pointer events when active
+    justify-content: center; // Center content horizontally
+
+    // Wrapper to center the loading content
+    .loading-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; // Center content vertically and horizontally
+
+        // Base shapes for visual loading animation
+        .base {
+            position: absolute;
+            filter: blur(60px);
+            opacity: 0.8;
+
+            &.one {
+                border-radius: 100%;
+                width: 120dvw; // Full viewport width units for large shape
+                height: 120dvw;
+                top: -100%; // Position off-screen initially
+                left: -10%;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 1) 8%, rgba(162, 97, 182, 1) 100%);
+                animation: flyPlus 8s linear infinite;
+                transform: rotate(0) translate(100px) rotate(0);
+                z-index: 13; // Ensure this shape is layered above
+            }
+
+            &.two {
+                width: 140dvw;
+                height: 120dvw;
+                background: linear-gradient(0deg, rgba(115, 150, 145, 1) 2%, rgba(111, 119, 195, 1) 100%);
+                animation: fly 12s linear infinite;
+                transform: rotate(0) translate(100px) rotate(0);
+                top: 50%; // Position in the middle
+                border-radius: 50%;
+            }
+
+            &.three {
+                border-radius: 100%;
+                width: 80dvh; // Full viewport height units for smaller shape
+                height: 80dvh;
+                bottom: -80px; // Slightly off-screen at the bottom
+                right: -100px;
+                background-color: $color-2;
+                animation: flyPlus 8s linear infinite;
+                transform: rotate(0) translate(100px) rotate(0);
+                opacity: .7;
+            }
+
+            // Keyframe animations for rotating shapes
+            @keyframes fly {
+                100% {
+                    transform: rotate(1turn) translate(100px) rotate(-1turn);
+                }
+            }
+
+            @keyframes flyPlus {
+                100% {
+                    transform: rotate(-1turn) translate(100px) rotate(1turn);
+                }
+            }
+        }
+    }
+
+    // Text displayed during loading
+    .loading-text {
+        @include fluid-typography(64, 84, 420, 1800); // Responsive typography mixin
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        color: white;
+        z-index: 20; // Ensure text is on top of all other elements
+        // animation: text-aura var(--aura-speed) ease-out infinite; // Aura animation for the text
+        letter-spacing: .03em; // Slightly increased letter spacing for readability
+    }
+}
+
+// Lottie animation container styling
+.lottie-loader-container {
+    max-width: 300px; // Restrict the size of Lottie animation
+}

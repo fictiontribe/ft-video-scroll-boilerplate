@@ -1,0 +1,31 @@
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+// Utility Class for Inter Font
+.inter-600 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+// Apply Syne Font to Body
+body {
+  font-family: 'Syne', sans-serif !important;
+}
+
+// Gradient Text Class
+.gradient-text {
+  background: linear-gradient(to right, #72A8FF 0%, #A261B6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  &.gradient-text-mobile-off {
+    @media screen and (max-width: 992px) {
+      background: transparent !important;
+      -webkit-background-clip: unset !important;
+      -webkit-text-fill-color: unset !important;
+    }
+  }
+}

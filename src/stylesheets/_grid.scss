@@ -1,0 +1,136 @@
+// Breakpoint mixins
+@mixin max-breakpoint($max-width) {
+    @media (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin min-breakpoint($min-width) {
+    @media (min-width: $min-width) {
+        @content;
+    }
+}
+
+// Grid breakpoints
+$breakpoints: (
+    'xl': 1450px,
+    'lg': 1200px,
+    'md': 992px,
+    'sm': 768px,
+    'xs': 680px
+);
+
+// Grid column generator
+@mixin generate-grid-columns($prefix: '') {
+    @for $i from 1 through 12 {
+        .grid-#{$prefix}#{$i} {
+            grid-column: span $i;
+        }
+    }
+
+    // Add the 'none' option for each breakpoint
+    .grid-#{$prefix}none {
+        display: none !important;
+    }
+}
+
+// Default grid (larger screens)
+@include generate-grid-columns();
+
+// Responsive grid classes
+@each $breakpoint, $width in $breakpoints {
+    @include max-breakpoint($width) {
+        @if $breakpoint !='xs' {
+            @include generate-grid-columns('#{$breakpoint}-');
+        }
+
+        else {
+
+            // Extra small screens: full width for all grid classes
+            @for $i from 1 through 12 {
+
+                .grid-#{$i},
+                .grid-lg-#{$i},
+                .grid-md-#{$i},
+                .grid-sm-#{$i} {
+                    grid-column: span 12;
+                }
+            }
+        }
+    }
+}
+
+// Full-width grid container
+.grid__container__nav {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: minmax(38px, 1fr) minmax(100px, 100%) minmax(38px, 1fr);
+    grid-template-areas: ". inner-content .";
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: minmax(20px, 1fr) minmax(100px, 100%) minmax(20px, 1fr);
+    }
+
+    >div {
+        grid-area: inner-content;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+
+        @include max-breakpoint(map-get($breakpoints, 'xs')) {
+            // grid-template-columns: 1fr;
+        }
+    }
+}
+
+// Full-width grid container
+.grid__container__full {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: minmax(100px, 100%);
+    grid-template-areas: "inner-content";
+
+    >div {
+        grid-area: inner-content;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+
+        @include max-breakpoint(map-get($breakpoints, 'xs')) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// Main grid container
+.grid__container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 100%) minmax(100px, 1fr);
+    grid-template-areas: ". inner-content .";
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: minmax(51px, 1fr) minmax(100px, 100%) minmax(51px, 1fr);
+    }
+
+    @media screen and (max-width: 680px) {
+        grid-template-columns: minmax(54px, 1fr) minmax(100px, 100%) minmax(54px, 1fr);
+    }
+
+    >div {
+        grid-area: inner-content;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+
+        @include max-breakpoint(map-get($breakpoints, 'xs')) {
+            grid-template-columns: 1fr;
+        }
+    }
+}

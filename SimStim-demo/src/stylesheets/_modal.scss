@@ -1,0 +1,200 @@
+// Backdrop overlay for modal
+.vbox-backdrop {
+    background-color: rgba(23, 23, 23, 0.99) !important; // Dark background with slight transparency
+}
+
+// Modal content container
+.vbox-content {
+    padding: 0 2% !important; // Add horizontal padding
+
+    .vbox-inline.vbox-child {
+        background-color: transparent !important; // Transparent background for inline modal content
+        box-shadow: none !important; // Remove any box shadow
+        height: calc(100vh - 30px); // Full viewport height minus margin
+        display: flex;
+        justify-content: center;
+        align-items: center; // Center content vertically and horizontally
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0; // Position SVG in the top-left corner
+        }
+
+        // Navigation container inside modal
+        .grid__container__nav {
+            color: white !important; // White text for nav content
+            margin-top: -10%; // Adjust vertical spacing
+
+            @media screen and (max-width: 768px) {
+                margin-top: -15%; // Adjust margin on smaller screens
+            }
+
+            h1 {
+                text-align: center;
+                @include fluid-typography(22, 26, 550, 1800); // Responsive typography for heading
+                font-style: normal;
+                font-weight: 700; // Bold heading
+            }
+
+            p {
+                margin-top: 25px;
+
+                @media screen and (max-width: 680px) {
+                    text-align: center;
+                    font-size: 11px; // Smaller font size on mobile
+                    margin-top: 10px;
+                }
+            }
+
+            // Grid layout adjustments
+            &>div {
+                gap: 5%; // Space between grid items
+                row-gap: 15%; // Space between rows
+
+                @media screen and (max-width: 680px) {
+                    row-gap: 15px;
+                    gap: 10px; // Smaller gaps on mobile
+                }
+            }
+
+            // Button and link styles inside modal
+            button,
+            a {
+                background-color: transparent; // Transparent background
+                border: 0;
+                position: relative;
+                display: inline-block;
+                border-radius: 50px; // Rounded button
+                transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); // Smooth transition effect
+
+                span {
+                    position: relative;
+                    border-radius: 10px; // Rounded span inside button
+                    display: inline-block;
+                    overflow: hidden;
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        display: block;
+                        background-color: white;
+                        z-index: 1;
+                        width: 100%;
+                        height: 0;
+                        bottom: 0;
+                        left: 0;
+                        opacity: 0; // Initially hidden
+                    }
+
+                    @media screen and (max-width: 680px) {
+                        // Optional adjustments for mobile
+                    }
+                }
+
+                &.animated {
+                    span:after {
+                        animation: spanSmoothAnimation 2s ease forwards; // Span animation on hover
+                    }
+                }
+
+                // Hover effects
+                &::before {
+                    content: "";
+                    z-index: -1;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background: linear-gradient(-45deg, #a261b6 0%, #72a8ff 100%);
+                    transform: translate3d(0px, 20px, 0) scale(0.95);
+                    filter: blur(51px);
+                    opacity: 0; // Initially hidden
+                    transition: opacity 0.3s; // Smooth transition for opacity
+                    border-radius: inherit;
+                }
+
+                &::after {
+                    content: "";
+                    z-index: -1;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background: inherit;
+                    border-radius: inherit;
+                }
+
+                &:hover {
+                    transform: scale(1.05, 1.05); // Slightly increase size on hover
+
+                    &::after,
+                    &::before {
+                        opacity: 0.5; // Show hover effect
+                    }
+                }
+            }
+
+            // Keyframes for span animation
+            @keyframes spanSmoothAnimation {
+                0% {
+                    height: 10%;
+                    bottom: 0;
+                    opacity: 0;
+                }
+
+                20% {
+                    height: 22%;
+                    opacity: 0.07;
+                }
+
+                100% {
+                    height: 0;
+                    bottom: 100%;
+                }
+            }
+        }
+    }
+}
+
+// Close button styles for modal
+.vbox-close {
+    svg {
+        display: none; // Hide default SVG icon
+    }
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 38 38' fill='none'%3E%3Cmask id='mask0_18_433' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='38' height='38'%3E%3Crect width='38' height='38' fill='%23D9D9D9'/%3E%3C/mask%3E%3Cg mask='url(%23mask0_18_433)'%3E%3Cpath d='M10.1334 30.0834L7.91675 27.8667L16.7834 19.0001L7.91675 10.1334L10.1334 7.91675L19.0001 16.7834L27.8667 7.91675L30.0834 10.1334L21.2167 19.0001L30.0834 27.8667L27.8667 30.0834L19.0001 21.2167L10.1334 30.0834Z' fill='white'/%3E%3C/g%3E%3C/svg%3E");
+    height: 40px;
+    width: 40px;
+    right: 10px;
+    top: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+// Share icon styling
+a.share {
+    img {
+        width: 100% !important; // Ensure the share icon takes full width
+    }
+}
+
+// Inline modal content styling
+.vbox-inline {
+    .grid-12 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px; // Space between grid items
+
+        a {
+            width: 40px; // Set width for share icons
+
+            img {
+                max-width: 35px; // Limit size of the images inside grid
+            }
+        }
+    }
+}

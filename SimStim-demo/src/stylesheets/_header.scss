@@ -1,0 +1,210 @@
+// Body class for top-nav adjustments
+body.top-nav {
+    header {
+        @media screen and (max-width: 768px) {
+            top: 38px; // Adjust header position on small screens
+        }
+    }
+}
+
+// Header styling
+header {
+    width: 100%;
+    position: fixed;
+    top: 38px; // Default top position for header
+    z-index: 1000; // Ensure header stays on top
+
+    @media screen and (max-width: 768px) {
+        top: 20px; // Adjust top position on small screens
+    }
+
+    // SVG icon transitions
+    svg {
+        path {
+            transition: fill .25s ease; // Smooth transition for fill color
+        }
+    }
+
+    // Logo-specific styling
+    #logo-svg {
+        padding-right: 10px;
+
+        path {
+            // Additional transition effects for the logo path can be added here
+        }
+    }
+
+    // Header variant for black theme
+    &[data-header="black"] {
+
+        // Black logo styling
+        #logo-svg {
+            path {
+                transition: fill .5s ease;
+                fill: black !important; // Black fill for logo
+            }
+        }
+
+        // Button styling in black header
+        nav {
+            button.options {
+                svg {
+                    path {
+                        fill: black !important; // Black fill for options button icon
+                    }
+                }
+            }
+
+            button.social {
+                svg {
+                    path {
+                        stroke: black !important; // Black stroke for social icons
+                        fill: transparent !important;
+                    }
+                }
+            }
+
+            // Button with white rounded background in black header
+            .white-rounded {
+                margin-left: 5px;
+                padding: 11px 20px;
+                background-color: black !important;
+                border: 0;
+                color: white !important; // White text on black button
+                border-radius: 30px;
+                font-size: 15px;
+                font-weight: 600;
+                transition: background-color .25s ease, color .25s ease;
+                position: relative;
+                overflow: hidden;
+
+                span {
+                    z-index: 3;
+                    position: relative;
+                    letter-spacing: .03em;
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    height: 110%;
+                    width: 700%;
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(114, 168, 255, 1) 66%, rgba(162, 97, 182, 1) 100%);
+                    top: -2px;
+                    left: 0;
+                    z-index: 2;
+                    transition: transform .5s ease;
+                }
+
+                &:hover {
+                    color: black; // Change text color on hover
+
+                    &::before {
+                        transform: translateX(-70%); // Slide background on hover
+                    }
+                }
+            }
+        }
+    }
+
+    // Grid layout for header content
+    .grid-12 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    // Navigation styling
+    nav {
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        @media screen and (max-width: 680px) {
+            gap: 5px; // Adjust gap on small screens
+        }
+
+        // Icon button styling
+        .icon {
+            background-color: transparent;
+            border: 0;
+            padding: 0;
+            margin-top: 3px;
+
+            svg {
+                height: 21px;
+                width: 21px;
+
+                path {
+                    transition: stroke .25s ease, fill .25s ease; // Smooth transition for icons
+                }
+            }
+
+            // Hover effect for options button
+            &.options:hover {
+                svg {
+                    path {
+                        fill: #72A8FF !important; // Change to light blue on hover
+                    }
+                }
+            }
+
+            // Hover effect for social icons
+            &.social:hover {
+                svg {
+                    path {
+                        stroke: #72A8FF !important; // Change stroke to light blue on hover
+                    }
+                }
+            }
+        }
+
+        // Button with white rounded background
+        .white-rounded {
+            margin-left: 5px;
+            padding: 11px 20px;
+            background-color: white;
+            border: 0;
+            color: black; // Black text on white background
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background-color .25s ease, color .25s ease;
+            position: relative;
+            overflow: hidden;
+
+            @media screen and (max-width: 680px) {
+                font-size: 12px;
+                padding: 8px 15px; // Adjust button size on small screens
+            }
+
+            span {
+                z-index: 3;
+                position: relative;
+                letter-spacing: .03em;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 110%;
+                width: 700%;
+                background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(114, 168, 255, 1) 66%, rgba(162, 97, 182, 1) 100%);
+                top: -2px;
+                left: 0;
+                z-index: 2;
+                transition: transform .5s ease;
+            }
+
+            &:hover {
+                color: white; // Change text color on hover
+
+                &::before {
+                    transform: translateX(-70%); // Slide background on hover
+                }
+            }
+        }
+    }
+}

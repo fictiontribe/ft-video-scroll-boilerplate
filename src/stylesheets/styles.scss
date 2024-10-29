@@ -1,0 +1,28 @@
+// Main Stylesheet: Import all SCSS partials for modular styling
+
+// Variables and global styles
+@import "_vars"; // Global variables for colors, typography, etc.
+
+// Mixins for reusable functions
+@import "mixins/fluid-typography"; // Mixins for responsive font sizing
+@import "mixins/aspect-ratio"; // Mixins for maintaining aspect ratios
+
+// Core styling
+@import "grid"; // Grid layout and spacing system
+@import "fonts"; // Font-face declarations and typography settings
+@import "loader"; // Loader animations and styles
+
+// UI Components
+@import "ui"; // General UI components like buttons, forms, etc.
+
+// Layout components
+// @import "header"; // Header section styles
+@import "footer"; // Footer section styles
+@import "styles_boilerplate"; // Boilerplate styles
+
+// Accessibility and interaction
+.no-touch {
+    // Disable pointer events for non-touch devices
+    pointer-events: none !important;
+}
+

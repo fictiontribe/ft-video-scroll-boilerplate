@@ -1,0 +1,11 @@
+// General anchor and button styles
+a,
+button {
+    touch-action: manipulation; // Improve touch experience by disabling unnecessary gestures
+}
+
+// Navigation button styles
+.nav-prev,
+.nav-next {
+    pointer-events: auto !important; // Ensure pointer events are enabled
+}

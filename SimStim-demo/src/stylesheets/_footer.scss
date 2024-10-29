@@ -1,0 +1,304 @@
+body.top-nav {
+    footer {
+        @media screen and (max-width: 768px) {
+            bottom: 38px;
+        }
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 37px;
+    left: 0;
+    width: 100%;
+    // height: 100px;
+    z-index: 13;
+    color: white;
+
+    @media screen and (max-width: 768px) {
+        bottom: 20px;
+    }
+
+
+
+    .scroll-wrap {
+        color: #FFF;
+        font-family: Inter;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .scroll-wrap-inner {
+            display: flex;
+            align-items: center;
+            // transition: opacity .25s ease .25s, transform .5s ease;
+            z-index: 13;
+            height: 27px;
+            overflow: hidden;
+            transition: clip-path 1s ease;
+
+            clip-path: inset(0 -10% 0 -10%);
+
+            @media screen and (max-width: 400px) {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+
+            button {
+                background-color: transparent;
+                border: 0;
+                font-size: unset;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            p {
+                margin: 0;
+                margin-left: 18px;
+                margin-right: 13px;
+                font-size: 13px;
+                white-space: nowrap;
+                line-height: 1em;
+
+                @media screen and (max-width: 500px) {
+                    font-size: 12px;
+                }
+            }
+
+            span {
+                position: absolute;
+                height: 27px;
+                width: 12px;
+                background: #72A8FF;
+                background: linear-gradient(to right, #72A8FF 0%, #A261B6 100%);
+                border-radius: 50px;
+                z-index: -1;
+                transition: width 1s ease .25s;
+
+
+            }
+        }
+
+        &.one {
+            span:not(.progress-bar) {
+                width: 34%;
+                animation: pulseScaleOne 2s ease-in-out infinite;
+                transform-origin: left;
+            }
+        }
+
+        &.two {
+            span:not(.progress-bar) {
+                width: 68%;
+                animation: pulseScaleTwo 2s ease-in-out infinite;
+                transform-origin: left;
+            }
+        }
+
+        &.three {
+            span:not(.progress-bar) {
+                width: 100%;
+                animation: pulseScaleThree 2s ease-in-out infinite;
+                transform-origin: center;
+            }
+        }
+
+        // Keyframes for pulsing effect using scaleX for class 'one'
+        @keyframes pulseScaleOne {
+
+            0%,
+            100% {
+                transform: scaleX(.95);
+            }
+
+            50% {
+                transform: scaleX(1.2);
+            }
+        }
+
+        @keyframes pulseScaleTwo {
+
+            0%,
+            100% {
+                transform: scaleX(.99);
+            }
+
+            50% {
+                transform: scaleX(1.1);
+            }
+        }
+
+        @keyframes pulseScaleThree {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        &.done {
+            .scroll-wrap-inner {
+                clip-path: inset(0 0 0 100%);
+                transform-origin: top;
+                pointer-events: none;
+            }
+
+            #scroll-toggle {
+                opacity: 1;
+                pointer-events: all;
+                clip-path: inset(0 0 0 0);
+                transition: opacity .25s ease;
+            }
+        }
+    }
+
+    .toggle,
+    #scroll-toggle {
+        position: absolute;
+        // opacity: 0;
+        clip-path: inset(0 0 0 100%);
+        pointer-events: none;
+        overflow: hidden;
+        transition: clip-path 1s ease;
+        width: 140px;
+
+        @media screen and (max-width: 400px) {
+            clip-path: inset(0 0 0 0);
+            pointer-events: all;
+        }
+
+        .progress-bar {
+            background: #72A8FF;
+            background: linear-gradient(to right, #72A8FF 0%, #A261B6 100%);
+            width: 0;
+            border-radius: 30px;
+            width: 0%;
+            position: absolute;
+            height: 100%;
+            top: 0px;
+            z-index: -1;
+            left: 0;
+            top: 0;
+        }
+
+        p {
+            margin-left: 50px;
+            color: rgba(255, 255, 255, 0.50);
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 600;
+            position: relative;
+            padding-left: 9px;
+            padding-right: 6px;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            border-radius: 50px;
+            min-width: 70px;
+            overflow: hidden;
+
+            // background-color: chartreuse;
+            @media screen and (max-width: 500px) {
+                font-size: 12px;
+                padding-right: 0px;
+            }
+
+        }
+
+    }
+
+    /* Basic styles for the toggle container */
+    .toggle-switch {
+        position: relative;
+        display: inline-flex;
+        width: 43px;
+        height: 19px;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    /* Hide the default checkbox */
+    .toggle-checkbox {
+        display: none;
+    }
+
+    /* Style the label to look like the toggle track */
+    .toggle-label {
+        position: absolute;
+        cursor: pointer;
+        background-color: #ccc;
+        border-radius: 19px;
+        width: 100%;
+        height: 100%;
+        transition: background-color 0.3s ease;
+        overflow: hidden;
+    }
+
+
+    /* The circle (toggle knob), adjusted size */
+    .toggle-label::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 15px;
+        height: 15px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+        filter: drop-shadow(-2px 1px 6px rgba(0, 0, 0, 0.25));
+    }
+
+    /* Change background and move the toggle knob when checked */
+    .toggle-checkbox:checked+.toggle-label {
+        background-color: #72A8FF;
+
+    }
+
+    .toggle-checkbox:checked+.toggle-label::before {
+        transform: translateX(24px);
+
+    }
+
+    .created-by {
+        font-family: Syne;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+
+        @media screen and (max-width: 500px) {
+            font-size: 12px;
+        }
+
+        a {
+            color: $purple;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+    }
+
+    div.grid-12 {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    &[data-footer="black"] {
+        p {
+            color: black !important;
+        }
+    }
+
+}
