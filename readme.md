@@ -2,7 +2,7 @@
 
 ![Screenshot](https://images.fictiontribe.com/simstim-og.jpg)
 
-### [Check out the demo](https://old.fictiontribe.com/os/webpack-boilerplate/) <br/> <br/>
+### [Check out the demo](https://fictiontribe.com/simstim/) <br/> <br/>
 
 ## Installation
 Clone the boilerplate:
